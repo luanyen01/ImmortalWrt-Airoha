@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       repo_branch:
-        description: '源码分支（Loong1996/immortalwrt）。留空即 master-airoha；填别的分支只作测试，默认只传 Artifact、不更新选包索引'
+        description: '源码分支（luanyen01/immortalwrt）。留空即 master-airoha；填别的分支只作测试，默认只传 Artifact、不更新选包索引'
         required: false
         default: 'master-airoha'
         type: string
@@ -77,7 +77,7 @@ env:
   DEVICE_VARIANT: ${{ github.event.inputs.device_variant }}
   EXTRA_PACKAGES: ${{ github.event.inputs.extra_packages }}
   PKG_VERSIONS: ${{ github.event.inputs.pkg_versions }}
-  REPO_URL: https://github.com/Loong1996/immortalwrt.git
+  REPO_URL: https://github.com/luanyen01/immortalwrt.git
   # 只维护 master-airoha 这一条线；输入留空时用它，填别的分支只作测试
   REPO_BRANCH: ${{ github.event.inputs.repo_branch || 'master-airoha' }}
   DEVICE_TARGET: airoha
@@ -1003,12 +1003,12 @@ jobs:
           echo "链接"
           echo "----"
           echo "  恩山论坛           https://www.right.com.cn/forum/thread-8487590-1-1.html"
-          echo "  Github 工程        https://github.com/Loong1996/ImmortalWrt-Airoha"
-          echo "  刷机教程           https://loong1996.github.io/ImmortalWrt-Airoha/recovery-guide.html"
-          echo "  迁移镜像生成器     https://loong1996.github.io/ImmortalWrt-Airoha/migrate-image.html"
-          echo "  工具入口（选包）   https://loong1996.github.io/ImmortalWrt-Airoha/"
-          echo "  固件下载           https://github.com/Loong1996/ImmortalWrt-Airoha/releases"
-          echo "  固件源码           https://github.com/Loong1996/immortalwrt"
+          echo "  Github 工程        https://github.com/luanyen01/ImmortalWrt-Airoha"
+          echo "  刷机教程           https://luanyen01.github.io/ImmortalWrt-Airoha/recovery-guide.html"
+          echo "  迁移镜像生成器     https://luanyen01.github.io/ImmortalWrt-Airoha/migrate-image.html"
+          echo "  工具入口（选包）   https://luanyen01.github.io/ImmortalWrt-Airoha/"
+          echo "  固件下载           https://github.com/luanyen01/ImmortalWrt-Airoha/releases"
+          echo "  固件源码           https://github.com/luanyen01/immortalwrt"
           echo "  QQ 群              1092754041"
           echo
           echo "包里是什么"
@@ -1071,10 +1071,10 @@ jobs:
             echo "----"
             echo "  本次 Release       $REL"
             echo "  恩山论坛           https://www.right.com.cn/forum/thread-8487590-1-1.html"
-            echo "  Github 工程        https://github.com/Loong1996/ImmortalWrt-Airoha"
-            echo "  刷机教程           https://loong1996.github.io/ImmortalWrt-Airoha/recovery-guide.html"
-            echo "  tcboot 不拆机迁移  https://loong1996.github.io/ImmortalWrt-Airoha/migrate-image.html"
-            echo "  工具入口（选包）   https://loong1996.github.io/ImmortalWrt-Airoha/"
+            echo "  Github 工程        https://github.com/luanyen01/ImmortalWrt-Airoha"
+            echo "  刷机教程           https://luanyen01.github.io/ImmortalWrt-Airoha/recovery-guide.html"
+            echo "  tcboot 不拆机迁移  https://luanyen01.github.io/ImmortalWrt-Airoha/migrate-image.html"
+            echo "  工具入口（选包）   https://luanyen01.github.io/ImmortalWrt-Airoha/"
             echo "  QQ 群              1092754041"
             echo
             echo "包里是什么"
@@ -1184,14 +1184,14 @@ jobs:
           - 固件实际安装的完整包列表见附件中的 `*.manifest`，完整内核配置见 `build.config`
           ### 🧩 附加软件包
           ${{ env.EXTRA_NOTE }}
-          - 想加装别的软件包：在[选包页](https://loong1996.github.io/ImmortalWrt-Airoha/packages.html)勾选后复制包名串，粘进本 workflow 的 `extra_packages` 输入重新编译
+          - 想加装别的软件包：在[选包页](https://luanyen01.github.io/ImmortalWrt-Airoha/packages.html)勾选后复制包名串，粘进本 workflow 的 `extra_packages` 输入重新编译
           ### 🔖 软件包版本覆盖
           ${{ env.PKG_VER_NOTE }}
           - 由仓库里的 `config/pkg-versions.txt` 控制，编译前改写 feed 的 `PKG_VERSION` 并自动重算 `PKG_HASH`
 
           ☕ 业余维护，开源不收费。觉得有用就 **点个 Star**，或请作者喝杯咖啡：
 
-          <img src="https://raw.githubusercontent.com/Loong1996/ImmortalWrt-Airoha/main/guide/img/reward.jpg" width="180" alt="Loong 的赞赏码">
+          <img src="https://raw.githubusercontent.com/luanyen01/ImmortalWrt-Airoha/main/guide/img/reward.jpg" width="180" alt="Loong 的赞赏码">
 
     - name: Publish Pages Site(发布门户与选包页)
       if: steps.compile.outputs.status == 'success'

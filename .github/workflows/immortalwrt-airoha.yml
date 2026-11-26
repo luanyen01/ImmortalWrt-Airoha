@@ -165,10 +165,12 @@ jobs:
         rm -f $B/706-*mhi-host-pci_generic*
         # 751 qca8k force mode：3 个 hunk FAILED
         rm -f $B/751-*qca8k*
-        # 782 USB serial option Quectel EG060W：2 个 hunk FAILED（USB 模块 ID，本机型用不到）
+        # 782 USB serial option Quectel EG060W：2 个 hunk FAILED
         rm -f $B/782-*Quectel-EG060W*
+        # 852 rtc-cmos platform_get_irq_optional：Hunk #1 FAILED at 1508（x86 RTC，本机型用不到）
+        rm -f $B/852-*rtc-cmos*
         echo "--- 剩余的相关补丁 ---"
-        ls $B | grep -E '^(503|706|751|782)-' || echo "(已清空)"
+        ls $B | grep -E '^(503|706|751|782|852)-' || echo "(已清空)"
 
     - name: Patch DRAM Size(设置内存上限)
       if: env.DRAM_SIZE != ''

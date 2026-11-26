@@ -163,8 +163,10 @@ jobs:
         rm -f $B/503-*ksmbd*
         # 706 mhi pci_generic nr_irqs：Hunk #1 FAILED at 1139（4G/5G 模块驱动，本机型用不到）
         rm -f $B/706-*mhi-host-pci_generic*
-        echo "--- 剩余的 503/706 补丁 ---"
-        ls $B | grep -E '^(503|706)-' || echo "(已清空)"
+        # 751 qca8k force mode：3 个 hunk FAILED（QCA8K 交换芯片，本机型用不到）
+        rm -f $B/751-*qca8k*
+        echo "--- 剩余的 503/706/751 补丁 ---"
+        ls $B | grep -E '^(503|706|751)-' || echo "(已清空)"
 
     - name: Patch DRAM Size(设置内存上限)
       if: env.DRAM_SIZE != ''

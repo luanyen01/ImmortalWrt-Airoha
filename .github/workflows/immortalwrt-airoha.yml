@@ -155,14 +155,16 @@ jobs:
         VERSION_INFO=$(git show -s --date=short --format="作者: %an<br/>时间: %cd<br/>内容: %s<br/>hash: %H")
         echo "VERSION_INFO=$VERSION_INFO" >> $GITHUB_ENV
 
-    - name: Drop Broken ksmbd Backport(移除打不上的 ksmbd 补丁)
+    - name: Drop Broken Backports(移除打不上的补丁)
       run: |
         cd $OPENWRT_PATH
-        # 503-01 (ksmbd tcp keepalive) 打不进 6.18.64：Hunk #1 FAILED at 292
-        ls target/linux/generic/backport-6.18/ | grep -E '^503-' || true
-        rm -f target/linux/generic/backport-6.18/503-*ksmbd*
-        echo "--- 删除后 ---"
-        ls target/linux/generic/backport-6.18/ | grep -E '^503-' || echo "(503 系列已清空)"
+        B=target/linux/generic/backport-6.18
+        # 503-01 ksmbd keepalive：Hunk #1 FAILED at 292
+        rm -f $B/503-*ksmbd*
+        # 706 mhi pci_generic nr_irqs：Hunk #1 FAILED at 1139（4G/5G 模块驱动，本机型用不到）
+        rm -f $B/706-*mhi-host-pci_generic*
+        echo "--- 剩余的 503/706 补丁 ---"
+        ls $B | grep -E '^(503|706)-' || echo "(已清空)"
 
     - name: Patch DRAM Size(设置内存上限)
       if: env.DRAM_SIZE != ''
